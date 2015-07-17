@@ -34,7 +34,7 @@ void pushInt(int str)
     if(top == SIZE-1)
     {
         cout<<"Stack is full!"<<endl; 
-    
+
     }
     else
     {
@@ -48,7 +48,7 @@ void push(char str)
     if(top == SIZE-1)
     {
         cout<<"Stack is full!"<<endl; 
-    
+
     }
     else
     {
@@ -136,7 +136,7 @@ int CompareOps(char op1, char op2)
     }
     else
     {
-    //   do nothing 
+        //   do nothing 
     }
 
 }
@@ -145,7 +145,7 @@ int Display(string &postfix)
 {
     int size = 0;
     char ch = 'a';
-    
+
     while( ch!= '\0')
     {
         ch = postfix[size];
@@ -217,7 +217,7 @@ string ConvertToPostfix(string &infix,int &size)
         postfix[index] = ch;
         index++;
     }
-return postfix;
+    return postfix;
 
 }
 
@@ -227,7 +227,7 @@ void Calculate(string &postfix,int &size)
     int temp;
     char str;
     result = 0;
-    
+
     cout<<"Size in cal:" <<size<<endl;
     for(i = 0; i < size; i++)
     {
@@ -245,7 +245,7 @@ void Calculate(string &postfix,int &size)
             op1 = popInt();
             cout<<"Popped:"<<op1<<endl;
             cout<<"Operator is:"<<postfix[i]<<endl;
-            
+
             switch(postfix[i])
             {
                 case '+':
@@ -253,7 +253,7 @@ void Calculate(string &postfix,int &size)
                     cout<<"Result = "<<result<<endl;
                     pushInt(result);
                     break;
-                    
+
                 case '-':
                     result = op1 - op2;
                     cout<<"Result = "<<result<<endl;
@@ -265,7 +265,7 @@ void Calculate(string &postfix,int &size)
                     cout<<"Result = "<<result<<endl;
                     pushInt(result);
                     break;
-                    
+
                 case '/':
                     result = (op1 / op2);
                     cout<<"Result = "<<result<<endl;
@@ -285,17 +285,17 @@ void Calculate(string &postfix,int &size)
 int main()
 {
     string infix;
-    
+
     cout<<"Enter operation to evaluate:(single digits only)";
     cin>> infix;
-    
+
     int size = infix.size();
     string postfix;
-    
+
     postfix = ConvertToPostfix(infix,size);
     size = Display(postfix);
     cout<<"Size after Display:"<<size<<endl;
     Calculate(postfix,size); 
-    
+
     return 0;
 }
