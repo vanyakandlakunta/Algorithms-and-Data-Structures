@@ -162,14 +162,14 @@ string ConvertToPostfix(string &infix,int &size)
 {
     char ch, discard;
     string postfix;
-    int index = 0;
+   
 
     for(int i = 0;i < size; i++)
     {
         if(IsOperand(infix[i]))
         {
-            postfix[index] = infix[i];
-            index++;
+            postfix+= infix[i];
+            
         }
         else if(IsOperator(infix[i]))
         {
@@ -187,8 +187,8 @@ string ConvertToPostfix(string &infix,int &size)
                 while(CompareOps(infix[i],value[top])  && (top!= 0))
                 {
                     ch = pop();
-                    postfix[index] = ch;
-                    index++;
+                    postfix+= ch;
+                    
                 }
 
             }   //then it pushes the operand into the stack
@@ -203,8 +203,8 @@ string ConvertToPostfix(string &infix,int &size)
             while(value[top]!= '(')
             {
                 ch = pop();
-                postfix[index] = ch;
-                index++;
+                postfix+= ch;
+               
             }
             //pop the '('
             discard =  pop();
@@ -214,8 +214,8 @@ string ConvertToPostfix(string &infix,int &size)
     while(top!= 0)
     {
         ch = pop();
-        postfix[index] = ch;
-        index++;
+        postfix+= ch;
+        
     }
     return postfix;
 
