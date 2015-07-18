@@ -1,3 +1,4 @@
+// REVIEW: check the comment start with ///REVIEW
 // =====================================================================================
 // 
 //       Filename:  Ex01_Calculator.cpp
@@ -22,13 +23,24 @@
 
 using namespace std;
 
-const int SIZE = 20;
+const int SIZE = 20;    ///REVIEW as a calculator, a stack with a width of 20 is not 
+                        ///enough, use std lib <stack> next time.
 
 
-char intVal[SIZE] = {0};
-char value[SIZE] = {0};
-int top;
+char intVal[SIZE] = {0};  ///REVIEW why not use type "int"
+                          /// IMPORTANT: since you only use "char" to store a "int"
+                          /// your program can only deal with results that is smaller than 128
+                          /// try "9*9*9*9"
+                          //
+char value[SIZE] = {0};   ///REVIEW this name for Ops is not good
+int top;  ///REVIEW even if top is initialized with 0 as a global variable
+          /// it is still better to initialize it explicitly
+          /// actually top can be -1. 
 
+///REVIEW 
+// here you used two stack "intVal" and "value"
+// it is okay to use one TOP for two stacks because they are used at different time.
+// But you need to assign top as -1 or 0 (to clear the stack) after the first stack's lifetime ends
 void pushInt(int str)
 {
     if(top == SIZE-1)
@@ -184,6 +196,9 @@ string ConvertToPostfix(string &infix,int &size)
             //checking if there is some other operand in the stack to compare it to. otherwise push infix[i]
             if(value[top] != 0 && infix[i] != '(' && value[top] != '(') 
             {
+                /// REVIEW when you meet the same level of ops, you can pop it too
+                /// for example, if infix[i] = '*' and value[top] = '*' too, you can 
+                /// pop the first '*' in value[top]
                 while(CompareOps(infix[i],value[top])  && (top!= 0))
                 {
                     ch = pop();
@@ -207,6 +222,7 @@ string ConvertToPostfix(string &infix,int &size)
                
             }
             //pop the '('
+            /// REVIEW: you don't need to store the "discard"
             discard =  pop();
         }
     }
